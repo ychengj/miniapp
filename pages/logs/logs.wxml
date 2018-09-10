@@ -1,0 +1,236 @@
+<!--导航条-->
+
+<view class="item-container">
+  <view class="item-head">
+    <image src="../assest/blue.png" class="headerBoxImg" alt=""></image>
+    <view class="FenXiang">
+      <image src="../assest/fenxiangbai.png" class="item-bar-img"></image>
+      <button open-type="share" bindtap="FenXiang" class="FenXiangbutton">{{language.share}}</button>
+    </view>
+
+    <!--显示密钥部分-->
+    <view class="keyShowBox">
+      <view class="keyshowcontainer">
+        <view class="flex-demo">{{first}}</view>
+        <view class="flex-demo">{{second}}</view>
+        <view class="flex-demo">{{third}}</view>
+        <view class="flex-demo">{{fourth}}</view>
+        <view class="flex-demo">{{fifth}}</view>
+        <view class="flex-demo">{{sixth}}</view>
+        <view class="flex-demo">{{seventh}}</view>
+        <view class="flex-demo">{{eighth}}</view>
+        <view class="flex-demo">{{ninth}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="item-box" >
+    <view class="item-box-1">
+      <view class="item-image">
+        <image src="../assest/keyLight.png"></image>
+      </view>
+      <view class="item-devCode" wx:if="{{zuijinshiyong}}">
+        <view class="item-name" >
+        {{systemSecretName}}
+        </view>
+        <view class="item-dev">
+          ID:{{devCode}}
+        </view>
+      </view>
+      <view class="item-devCode" wx:if="{{!zuijinshiyong}}">
+        <view class="item-name-red" >
+          {{language.Norecentuse}}
+        </view>
+
+      </view>
+    </view>
+    <view class="item-user" >
+
+    </view>
+  </view>
+    <!--编辑 刷新 历史 删除-->
+  <view class="item-bar">
+    <view bindtap="bianjitap" class="item-bar-1"><image class="item-bar-img" src="../assest/bianji.png"></image><text class="item-bar-text">{{language.compile}}</text></view>
+    <view bindtap="GengXing" class="item-bar-1" ><image class="item-bar-img" src="../assest/gengxin.png"></image><text class="item-bar-text">{{language.update}}</text></view>
+    <view bindtap="LiShi" class="item-bar-1" ><image class="item-bar-img" src="../assest/lishi.png"></image><text class="item-bar-text">{{language.history}}</text></view>
+    <view bindtap="Deletetap" class="item-bar-1" ><image class="item-bar-img" src="../assest/shanchu1.png"></image><text class="item-bar-text1">{{language.delete}}</text></view>
+  </view>
+    <!--V2.0.0的锁-->
+  <view class="item-con" wx:if='{{version}}'>
+    <scroll-view scroll-x="true" class="nav" scroll-left="{{navScrollLeft}}" scroll-with-animation="{{true}}">
+      <block wx:for="{{navData}}" wx:for-index="idx" wx:for-item="navItem" wx:key="idx">
+        <view class="nav-item {{currentTab == idx ?'active':''}}"  data-current="{{idx}}" bindtap="switchNav">{{navItem.text}}</view>
+      </block>
+    </scroll-view>
+    <!-- 页面内容 -->
+      <swiper class="tab-box" current="{{currentTab}}" duration="300" bindchange="switchTab">
+        <swiper-item wx:for="{{[0,1,2,3,4,5]}}" wx:for-item="tabItem" wx:for-index="idx" wx:key="idx" class="tab-content">
+          <!--单次-->
+          <view wx:if="{{tabItem == 0}}" class="item-click">
+            <button wx:if="{{singletime}}" class="ShengChengMiMa" bindtap="DanCi">{{language.generatepassword}}</button>
+            <button wx:if="{{!singletime}}" class="ShengChengMiMa" >{{singlettl}}s</button>
+            <view class="click-sp">{{language.singletime}}</view>
+          </view>
+          <!--短时-->
+          <view wx:if="{{tabItem == 1}}" class="item-click">
+            <button wx:if="{{littletime}}" class="ShengChengMiMa" bindtap="DuanShi">{{language.generatepassword}}</button>
+            <button wx:if="{{!littletime}}" class="ShengChengMiMa" >{{littletimettl}}s</button>
+            <view class="click-sp">{{language.littletime}}</view>
+          </view>
+          <!--限时-->
+          <view wx:if="{{tabItem == 2}}" class="item-click1">
+            <!--开始时间-->
+            <view class="date-con" wx:if="{{showDate}}">
+              <view class="tui-picker-content">
+                <!--&lt;!&ndash;<view class="tui-picker-name" >日期时间选择器（精确到秒）</view>&ndash;&gt;disabled="true"-->
+                <picker mode="multiSelector"  value="{{dateTime}}" bindchange="StartDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+                  <view class="tui-picker-detail">
+                    <view class="Time-sp">{{language.starttime}}:</view>
+                    <view class="tui-picker-detail-sec" >
+                      <view class="datetime" wx:if="{{showStartTime}}" >{{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:00</view>
+                      <view class="JianTou-SP" wx:if="{{!showStartTime}}" > > </view>
+                    </view>
+                  </view>
+                </picker>
+              </view>
+            </view >
+            <!--结束时间-->
+            <view class="date-con" wx:if="{{showDate}}">
+              <view class="tui-picker-content">
+                <!--&lt;!&ndash;<view class="tui-picker-name" >日期时间选择器（精确到秒）</view>&ndash;&gt;disabled="true"-->
+                <picker mode="multiSelector"  value="{{dateTime1}}" bindchange="EndDateTime" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+                  <view class="tui-picker-detail Time-bor">
+                    <view class="Time-sp">{{language.endtime}}:</view>
+                    <view class="tui-picker-detail-sec">
+                      <view class="datetime" wx:if="{{showEndTime}}">{{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:00</view>
+                      <view class="JianTou-SP" wx:if="{{!showEndTime}}"> > </view>
+                    </view>
+                  </view>
+                </picker>
+              </view>
+            </view>
+            <button wx:if="{{xianshitime}}" class="ShengChengMiMa1" bindtap="XianShi">{{language.generatepassword}}</button>
+            <button wx:if="{{!xianshitime}}" class="ShengChengMiMa" >{{xianshitimettl}}s</button>
+            <view class="click-sp">{{language.singletime}}</view>
+          </view>
+          <!--循环-->
+          <view wx:if="{{tabItem == 3}}" class="item-click1">
+            <!--类型-->
+            <view class="date-con" >
+              <view class="tui-picker-content">
+                <!--&lt;!&ndash;<view class="tui-picker-name" >日期时间选择器（精确到秒）</view>&ndash;&gt;disabled="true"-->
+                <picker bindchange="bindPickerChange" value="{{index}}" range="{{Array}}">
+                  <view class="tui-picker-detail">
+                    <view class="Time-sp">{{language.Cycleway}}</view>
+                    <view class="tui-picker-detail-sec">
+                      <view class="datetime" wx:if="{{showType}}">{{Array[index]}}</view>
+                      <view class="JianTou-SP" wx:if="{{!showType}}"> > </view>
+                    </view>
+                  </view>
+                </picker>
+              </view>
+            </view>
+            <!--开始时间-->
+            <view class="date-con" wx:if="{{showDate}}">
+              <view class="tui-picker-content">
+                <!--&lt;!&ndash;<view class="tui-picker-name" >日期时间选择器（精确到秒）</view>&ndash;&gt;disabled="true"-->
+                <picker bindchange="bindPickerSTimeChange" value="{{STime}}" range="{{Array1}}">
+                  <view class="tui-picker-detail">
+                    <view class="Time-sp">{{language.starttime}}</view>
+                    <view class="tui-picker-detail-sec">
+                      <view class="datetime" wx:if="{{showType1}}">{{Array1[STime]}}</view>
+                      <view class="JianTou-SP" wx:if="{{!showType1}}"> > </view>
+                    </view>
+                  </view>
+                </picker>
+              </view>
+            </view >
+            <!--结束时间-->
+            <view class="date-con" wx:if="{{showDate}}">
+              <view class="tui-picker-content">
+                <!--&lt;!&ndash;<view class="tui-picker-name" >日期时间选择器（精确到秒）</view>&ndash;&gt;disabled="true"-->
+                <picker bindchange="bindPickerETimeChange" value="{{ETime}}" range="{{Array2}}">
+                  <view class="tui-picker-detail">
+                    <view class="Time-sp">{{language.endtime}}</view>
+                    <view class="tui-picker-detail-sec">
+                      <view class="datetime" wx:if="{{showType2}}">{{Array2[ETime]}}</view>
+                      <view class="JianTou-SP" wx:if="{{!showType2}}"> > </view>
+                    </view>
+                  </view>
+                </picker>
+              </view>
+            </view>
+            <button wx:if="{{xunhuantime}}" class="ShengChengMiMa1" bindtap="XunHuan">{{language.generatepassword}}</button>
+            <button wx:if="{{!xunhuantime}}" class="ShengChengMiMa" >{{xunhuantimettl}}s</button>
+            <view class="click-sp">{{language.xunhuantime}}</view>
+          </view>
+          <!--永久-->
+          <view wx:if="{{tabItem == 4}}" class="item-click">
+            <button wx:if="{{errotime}}" class="ShengChengMiMa" bindtap="YongJiu">{{language.generatepassword}}</button>
+            <button wx:if="{{!errotime}}" class="ShengChengMiMa" >{{ttl}}s</button>
+            <view class="click-sp">{{language.singletime}}</view>
+          </view>
+          <!--清空-->
+          <view wx:if="{{tabItem == 5}}" class="item-click">
+            <button wx:if="{{qingkongtime}}" class="ShengChengMiMa" bindtap="QingKong">{{language.generatepassword}}</button>
+            <button wx:if="{{!qingkongtime}}" class="ShengChengMiMa" >{{qingkongtimettl}}s</button>
+            <view class="click-sp">{{language.qingkongtime}}</view>
+          </view>
+        </swiper-item>
+      </swiper>
+  </view>
+    <!--V1.0.0的锁-->
+  <view class="item-con" wx:if='{{!version}}'>
+    <view class="item-click">
+      <button wx:if="{{laotime}}" class="ShengChengMiMa" bindtap="GivePassword">{{language.generatepassword}}</button>
+      <button wx:if="{{!laotime}}" class="ShengChengMiMa" >{{laotimettl}}s</button>
+    </view>
+
+  </view>
+</view>
+
+
+<!--&lt;!&ndash;编辑弹窗&ndash;&gt;-->
+<view >
+  <view class="modal-box" wx:if="{{ShowBianJi}}">
+    <view class="modal-body">
+      <view class="modal-content">
+        <view class="modal-head" >{{language.Change}}</view>
+        <view class="devCode-head">{{devCode}}</view>
+        <view class="modal-input-con" >
+          <input placeholder='{{language.placeholderKeyName}}' bindinput="Name" value="{{Name}}" placeholder-class="phcolor" class="modal-input"/>
+        </view>
+        <view class="modal-button-con">
+          <view class="modal-button-left">
+            <button class="modal-button" bindtap="BianJiQueDing">{{language.Confirm}}</button>
+          </view>
+          <view class="modal-button-right">
+            <button class="modal-button" bindtap="BianJiQuXiao">{{language.Cancel}}</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--更新弹窗-->
+<view>
+  <view class="modal-box" wx:if="{{ShowGengxin}}">
+    <view class="modal-body">
+      <view class="modal-content">
+        <view class="modal-head" >{{language.change}}</view>
+        <view class="devCode-head">{{devCode}}</view>
+        <view class="modal-input-con">
+          <input placeholder="{{language.placeholderKey}}" bindinput="Password" value="{{Password}}" placeholder-class="phcolor" class="modal-input"/>
+        </view>
+        <view class="modal-button-con">
+          <view class="modal-button-left">
+            <button class="modal-button" bindtap="GengXingQueDing">{{language.Confirm}}</button>
+          </view>
+          <view class="modal-button-right">
+            <button class="modal-button" bindtap="GengXingQuXiao">{{language.Cancel}}</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,45 @@
+<view class="history-container">
+    <view class="item-none" wx:if="{{noneShow}}">{{language.nohistory}}</view>
+    <view class="item-qk">
+        <view class="item-qk-item" bindtap="QingKong">
+            <view class="qk-icon">
+                <image src="../assest/qingkong.png"></image>
+            </view>
+            <view class="qk-sp" >{{language.empty}}</view>
+        </view>
+    </view>
+    <view class="item-con">
+        <view wx:if="{{index != ID}}" id="{{index}}" bindtap="GoFenXiang" class="history-item" wx:for="{{array}}" wx:for-index='index' wx:for-item='item'>
+            <view class="hitory-item-left">
+                <image class="hitory-item-left-img" src="../assest/keyLight.png" ></image>
+            </view>
+            <view class="history-item-center">
+                <view class="history-item-center-top">
+                    <view class="history-item-center-top-left">
+                        <view class="psw">{{language.password}}: </view>
+                        <view class="pswN">{{item.dynamicSecret}}</view>
+                    </view>
+                    <view class="history-item-center-top-right">{{item.secretTypeName}}</view>
+                </view>
+                <view class="history-item-center-bottom" wx:if="{{item.startTime==null && item.secretTypeName!='循环'}}">
+                    {{language.time}}: {{item.requireTime}}
+                </view>
+                <view class="history-item-center-bottom" wx:if="{{item.startTime!=null}}">
+                    {{language.time}}: {{item.startTime}} - {{item.endTime}}
+                </view>
+                <view class="history-item-center-bottom" wx:if="{{item.secretTypeName=='循环'}}">
+                    {{language.time}}: {{item.requireTime}} {{item.weekInfoName}} {{item.loopStart}} - {{item.loopEnd}}
+                </view>
+            </view>
+            <view class="history-item-right-a" wx:if="{{item.effective == 1}}">
+                {{language.executed}}
+            </view>
+            <view class="history-item-right" wx:if="{{item.effective == -1}}">
+                {{language.Expired}}
+            </view>
+            <view class="history-item-right-b" wx:if="{{item.effective == 0}}">
+                {{language.Tobeeffective}}
+            </view>
+        </view>
+    </view>
+</view>
