@@ -1,0 +1,50 @@
+.FenXiangCon{
+    width: 73.5%;
+    margin: auto;
+    margin-top: 97.5rpx;
+}
+.share-item{
+    display: flex;
+    width:100%;
+    margin-bottom: 15rpx;
+    font-size: 26rpx;
+}
+.share-item-left{
+    padding-right: 100rpx;
+}
+.share-password{
+    color: #00a6f4;
+}
+.share-codeName{
+    color: #999999;
+}
+.share-time{
+    color: #999999;
+}
+.share-beizhu{
+    color: #666666;
+    font-size: 26rpx;
+    margin-top: 10rpx;
+}
+.share-beizhu1{
+    color: #666666;
+    font-size: 26rpx;
+    margin-top: 50rpx;
+}
+.share-button{
+    margin-top:100rpx;
+}
+.share-button1{
+    margin-top: 30rpx;
+}
+.GoBackToIndex{
+    background-color: #00a6f4;
+    color: white;
+    width: 90%;
+}
+.GoBackToIndex1{
+    background-color: red;
+    color: white;
+    width: 90%;
+}
+

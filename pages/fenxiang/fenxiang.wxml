@@ -1,0 +1,51 @@
+<view class="FenXiangCon">
+    <view class="share-item">
+        <view class="share-item-left">开锁密码:</view>
+        <view class="share-password">{{password}}</view>
+    </view>
+    <view class="share-item">
+        <view class="share-item-left">门锁名称:</view>
+        <view class="share-codeName">{{name}}</view>
+    </view>
+    <view class="share-item">
+        <view class="share-item-left">开锁类型:</view>
+        <view class="share-time">{{type}}</view>
+    </view>
+    <view class="share-item" wx:if="{{showxunhuan}}">
+        <view class="share-item-left">循环类型:</view>
+        <view class="share-time">{{weekInfo}}</view>
+    </view>
+    <view class="share-item">
+        <view class="share-item-left">生成时间:</view>
+        <view class="share-time">{{requireTime}}</view>
+    </view>
+    <view class="share-item" wx:if="{{showtime}}">
+        <view class="share-item-left">生效时间:</view>
+        <view class="share-time">{{startime}}</view>
+    </view>
+    <view class="share-item" wx:if="{{showtime}}">
+        <view class="share-item-left">失效时间:</view>
+        <view class="share-time">{{endtime}}</view>
+    </view>
+    <view class="share-beizhu1">
+     输入密码后请按“#”号键确认
+    </view>
+    <view class="share-beizhu">
+     {{massage}}
+    </view>
+    <view class="share-button" wx:if="{{showIndexbutton}}">
+        <button class="GoBackToIndex" bindtap="GoShare" open-type="share">分享</button>
+    </view>
+    <view class="share-button1" wx:if="{{showIndexbutton}}">
+        <button class="GoBackToIndex" bindtap="FuZhi" >复制</button>
+    </view>
+    <view class="share-button1" wx:if="{{showIndexbutton}}">
+        <button class="GoBackToIndex1" bindtap="ShanChu" >删除</button>
+    </view>
+    <view class="share-button" wx:if="{{!showIndexbutton}}">
+        <button class="GoBackToIndex" bindtap="GoBackToIndex">返回首页</button>
+    </view>
+
+
+</view>
+

@@ -1,0 +1,7 @@
+<view>
+    <view class="container">
+        <image  src="{{imageUrl}}" class="login_img"></image>
+        <button bindtap="login" class="login_but" open-type="getUserInfo">{{language.login}}</button>
+        <view class="version">{{language.version}} : {{Version}}</view>
+    </view>
+</view>

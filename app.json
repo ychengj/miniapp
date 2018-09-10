@@ -1,0 +1,44 @@
+{
+  "pages":[
+    "pages/login",
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/logs/logs",
+    "pages/fenxiang/fenxiang",
+    "pages/history/history"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#00a6f4",
+    "borderStyle": "white",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "最近使用",
+        "pagePath": "pages/logs/logs",
+        "iconPath": "pages/assest/zuijinshiyonghui.png",
+        "selectedIconPath": "pages/assest/zuijinshiyonglan.png"
+      },
+      {
+        "text": "动态密码",
+        "pagePath": "pages/index/index",
+        "iconPath": "pages/assest/huidaotaimiyao.png",
+        "selectedIconPath": "pages/assest/landongtaimiyao.png"
+      },
+      {
+        "text": "会员中心",
+        "pagePath": "pages/mine/mine",
+        "iconPath": "pages/assest/huiyuanzhongxinhui.png",
+        "selectedIconPath": "pages/assest/huiyuanzhongxinlan.png"
+
+      }
+    ]
+  }
+  }

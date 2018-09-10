@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "密码分享",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

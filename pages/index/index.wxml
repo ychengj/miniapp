@@ -1,0 +1,95 @@
+<!--index.wxml-->
+<view class="index_container">
+    <view class="headerBox">
+    <image src="../assest/head.png" class="headerBoxImg" alt=""></image>
+      <view class="memberBox">
+          <view class="left-headimg">
+              <block>
+                  <image bindtap="bindViewTap" class="userinfo-avatar" src="{{headUrl}}" background-size="cover"></image>
+                  <text class="userinfo-nickname">{{nickname}}</text>
+              </block>
+          </view>
+      </view>
+
+      <!--显示密钥部分-->
+      <!--<view class="keyShowBox">-->
+          <!--<view class="keyshowcontainer">-->
+              <!--<view class="flex-demo">{{first}}</view>-->
+              <!--<view class="flex-demo">{{second}}</view>-->
+              <!--<view class="flex-demo">{{third}}</view>-->
+              <!--<view class="flex-demo">{{fourth}}</view>-->
+              <!--<view class="flex-demo">{{fifth}}</view>-->
+              <!--<view class="flex-demo">{{sixth}}</view>-->
+              <!--<view class="flex-demo">{{seventh}}</view>-->
+              <!--<view class="flex-demo">{{eighth}}</view>-->
+              <!--<view class="flex-demo">{{ninth}}</vie    w>-->
+          <!--</view>-->
+      <!--</view>-->
+    </view>
+    <!--扫一扫-->
+    <view class="SaoAdd">
+        <view class="saobox">
+            <image src="../assest/RichScan.png" class="saoimg" bindtap="SaoYiSao"></image>
+            <view class="saospan">{{language.RichScan}}</view>
+        </view>
+        <view class="saobox">
+            <image src="../assest/handAdd.png" class="saoimg" bindtap="ShouDong"></image>
+            <view class="saospan">{{language.manuallyadd}}</view>
+        </view>
+    </view>
+    <!--弹窗-->
+    <view class="modal-box" hidden="{{flag}}" bindtap="hide">
+        <view class="modal-body">
+            <view class="modal-content">
+                <view class="modal-head" >{{language.Addsystemsecretkey}}</view>
+                <view class="modal-input-con" >
+                    <input placeholder="{{language.placeholderNumber}}" bindinput="deviceCode" value="{{deviceCode}}" placeholder-class="phcolor" class="modal-input"/>
+                </view>
+                <view class="modal-input-con" >
+                    <input placeholder="{{language.placeholderKeyName}}" bindinput="name" value="{{name}}" placeholder-class="phcolor" class="modal-input"/>
+                </view>
+                <view class="modal-input-con" >
+                    <input placeholder="{{language.placeholderKey}}" bindinput="systemSecret" value="{{systemSecret}}" placeholder-class="phcolor" class="modal-input"/>
+                </view>
+                <view class="modal-button-con">
+                    <view class="modal-button-left">
+                        <button class="modal-button" bindtap="QueDing">{{language.Confirm}}</button>
+                    </view>
+                    <view class="modal-button-right">
+                        <button class="modal-button" bindtap="QuXiao">{{language.Cancel}}</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--<view class="itembox">-->
+        <!--<button bindtap="huoqu">获取</button>-->
+    <!--</view>-->
+    <!--列表-->
+    <view class="item-container">
+        <view class="item-none" wx:if="{{noneShow}}">{{language.NoSecret}}</view>
+        <view wx:for="{{array}}" class="item-box" wx:for-index='index' wx:for-item='item'>
+            <view class="item-image">
+                <image src="../assest/keyLight.png"></image>
+            </view>
+            <view class="item-devCode">
+                <view class="item-name" >
+                    {{item.systemSecretName}}
+                </view>
+                <view class="item-dev">
+                    ID:{{item.deviceCode}}
+                </view>
+            </view>
+            <view class="item-user">
+                <view>
+                    <view></view>
+                </view>
+            </view>
+            <view class="item-button"  bindtap="Godetails" id="{{index}}">
+                <button class="item-but-a">
+                    <view>{{language.Management}}</view>
+                </button>
+            </view>
+        </view>
+    </view>
+</view>

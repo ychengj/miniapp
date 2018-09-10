@@ -1,0 +1,68 @@
+<view>
+    <view class="minebox">
+        <image src="../assest/bigblue_02.png" class="mineboximage"></image>
+        <view class="touxiangbox">
+            <image bindtap="bindViewTap" class="mine-touxiang" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+            <text class="mine-nickname">{{userInfo.nickName}}</text>
+        </view>
+    </view>
+    <view class="mineinformation-con">
+        <view class="mineinformation-item">
+            <view>{{language.phone}}</view>
+            <view class="PhoneNumber" hidden="{{registed}}" bindtap="BangDingPhone">{{language.bindphone}}</view>
+            <view class="PhoneNumber" hidden="{{!registed}}" bindtap="BangDingPhone">{{mobile}}</view>
+        </view>
+        <!--<view class="mineinformation-item">-->
+            <!--<view>{{language.sex}}</view>-->
+            <!--<view class="mine-item-sp" >{{userInfo.gender}}</view>-->
+        <!--</view>-->
+        <view class="mineinformation-item">
+            <view>{{language.language}}</view>
+            <picker bindchange="bindPickerChange" value="{{langIndex}}" range="{{languages}}">
+                <view class="picker">
+                    <view class="mine-item-sp">{{languages[langIndex]}}</view>
+                </view>
+            </picker>
+        </view>
+        <view class="mineinformation-item">
+            <view>{{language.address}}</view>
+            <view class="mine-item-sp">{{userInfo.province}}</view>
+        </view>
+        <view class="mineinformation-item">
+            <view>{{language.version}}</view>
+            <view class="mine-item-sp">{{Version}}</view>
+        </view>
+        <view>
+            <button class="Exit-button" bindtap="Exit">{{language.logout}}</button>
+        </view>
+    </view>
+    <!--弹窗绑定手机号-->
+    <view class="modal-box" hidden="{{flag}}" bindtap="hide">
+        <view class="modal-body">
+            <view class="modal-content">
+                <view class="modal-head" >{{language.bindphone}}</view>
+                <view class="modal-input-con" >
+                    <input placeholder="{{language.placeholderphone}}" bindinput="phoneNumber" value="{{phoneNumber}}" placeholder-class="phcolor" class="modal-input"/>
+                </view>
+                <view class="yanzhen">
+                    <view class="yanzhen-input-con" >
+                        <input placeholder="{{language.placeholdercode}}" bindinput="authCode" value="{{authCode}}" placeholder-class="phcolor" class="yanzhen-input"/>
+
+                    </view>
+                    <text class="huoquyanzhengma" bindtap="huoquyanzhengma" hidden="{{yz}}">{{language.getcode}}</text>
+                    <text class="huoquyanzhengma" bindtap="huoquyanzhengma" hidden="{{!yz}}">{{YANZHENGTIME}}s</text>
+                </view>
+
+
+                <view class="modal-button-con">
+                    <view class="modal-button-left">
+                        <button class="modal-button" bindtap="QueDingbangding">{{language.Confirm}}</button>
+                    </view>
+                    <view class="modal-button-right">
+                        <button class="modal-button" bindtap="QuXiaobangding">{{language.Cancel}}</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

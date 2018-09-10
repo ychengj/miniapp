@@ -1,0 +1,23 @@
+.login_img{
+    width: 100%;
+    height: 800rpx;
+}
+.login_but{
+    width: 80%;
+    color: white;
+    border-radius: 140rpx;
+    background-color: #2ECC71;
+    margin-top: 100rpx;
+}
+.container {
+    width: 100%;
+    height: 100%;
+    padding:  0;
+}
+.version{
+    width: 80%;
+    text-align: right;
+    font-size: 20rpx;
+    color: #999999;
+    margin-top: 80rpx;
+}
